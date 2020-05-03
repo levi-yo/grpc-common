@@ -1,6 +1,17 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath 'com.google.protobuf:protobuf-gradle-plugin:0.8.8'
+    }
+}
+
 plugins {
     id 'java'
 }
+
+apply plugin: 'com.google.protobuf'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
@@ -10,5 +21,39 @@ repositories {
 }
 
 dependencies {
+    /**
+     * gRPC
+     */
+    compile group: 'io.grpc', name: 'grpc-netty-shaded', version: '1.21.0'
+    compile group: 'io.grpc', name: 'grpc-protobuf', version: '1.21.0'
+    compile group: 'io.grpc', name: 'grpc-stub', version: '1.21.0'
+    implementation "com.google.protobuf:protobuf-java-util:3.8.0"
+    compile group: 'com.google.protobuf', name: 'protobuf-java', version: '3.8.0'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'build/generated/source/proto/main/grpc'
+            srcDirs 'build/generated/source/proto/main/java'
+        }
+    }
+}
+
+protobuf {
+    protoc {
+        artifact = "com.google.protobuf:protoc:3.7.1"
+    }
+    plugins {
+        grpc {
+            artifact = 'io.grpc:protoc-gen-grpc-java:1.21.0'
+        }
+    }
+    generateProtoTasks {
+        all()*.plugins {
+            grpc {}
+        }
+    }
 }
