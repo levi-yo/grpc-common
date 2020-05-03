@@ -16,6 +16,7 @@ private static final long serialVersionUID = 0L;
     super(builder);
   }
   private SearchResponse() {
+    results_ = java.util.Collections.emptyList();
   }
 
   @java.lang.Override
@@ -43,16 +44,12 @@ private static final long serialVersionUID = 0L;
             done = true;
             break;
           case 10: {
-            com.levi.yoon.proto.SearchResult.Builder subBuilder = null;
-            if (results_ != null) {
-              subBuilder = results_.toBuilder();
+            if (!((mutable_bitField0_ & 0x00000001) != 0)) {
+              results_ = new java.util.ArrayList<com.levi.yoon.proto.SearchResult>();
+              mutable_bitField0_ |= 0x00000001;
             }
-            results_ = input.readMessage(com.levi.yoon.proto.SearchResult.parser(), extensionRegistry);
-            if (subBuilder != null) {
-              subBuilder.mergeFrom(results_);
-              results_ = subBuilder.buildPartial();
-            }
-
+            results_.add(
+                input.readMessage(com.levi.yoon.proto.SearchResult.parser(), extensionRegistry));
             break;
           }
           default: {
@@ -70,6 +67,9 @@ private static final long serialVersionUID = 0L;
       throw new com.google.protobuf.InvalidProtocolBufferException(
           e).setUnfinishedMessage(this);
     } finally {
+      if (((mutable_bitField0_ & 0x00000001) != 0)) {
+        results_ = java.util.Collections.unmodifiableList(results_);
+      }
       this.unknownFields = unknownFields.build();
       makeExtensionsImmutable();
     }
@@ -88,24 +88,38 @@ private static final long serialVersionUID = 0L;
   }
 
   public static final int RESULTS_FIELD_NUMBER = 1;
-  private com.levi.yoon.proto.SearchResult results_;
+  private java.util.List<com.levi.yoon.proto.SearchResult> results_;
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  public boolean hasResults() {
-    return results_ != null;
+  public java.util.List<com.levi.yoon.proto.SearchResult> getResultsList() {
+    return results_;
   }
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  public com.levi.yoon.proto.SearchResult getResults() {
-    return results_ == null ? com.levi.yoon.proto.SearchResult.getDefaultInstance() : results_;
+  public java.util.List<? extends com.levi.yoon.proto.SearchResultOrBuilder> 
+      getResultsOrBuilderList() {
+    return results_;
   }
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  public com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder() {
-    return getResults();
+  public int getResultsCount() {
+    return results_.size();
+  }
+  /**
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+   */
+  public com.levi.yoon.proto.SearchResult getResults(int index) {
+    return results_.get(index);
+  }
+  /**
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+   */
+  public com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder(
+      int index) {
+    return results_.get(index);
   }
 
   private byte memoizedIsInitialized = -1;
@@ -122,8 +136,8 @@ private static final long serialVersionUID = 0L;
   @java.lang.Override
   public void writeTo(com.google.protobuf.CodedOutputStream output)
                       throws java.io.IOException {
-    if (results_ != null) {
-      output.writeMessage(1, getResults());
+    for (int i = 0; i < results_.size(); i++) {
+      output.writeMessage(1, results_.get(i));
     }
     unknownFields.writeTo(output);
   }
@@ -134,9 +148,9 @@ private static final long serialVersionUID = 0L;
     if (size != -1) return size;
 
     size = 0;
-    if (results_ != null) {
+    for (int i = 0; i < results_.size(); i++) {
       size += com.google.protobuf.CodedOutputStream
-        .computeMessageSize(1, getResults());
+        .computeMessageSize(1, results_.get(i));
     }
     size += unknownFields.getSerializedSize();
     memoizedSize = size;
@@ -153,11 +167,8 @@ private static final long serialVersionUID = 0L;
     }
     com.levi.yoon.proto.SearchResponse other = (com.levi.yoon.proto.SearchResponse) obj;
 
-    if (hasResults() != other.hasResults()) return false;
-    if (hasResults()) {
-      if (!getResults()
-          .equals(other.getResults())) return false;
-    }
+    if (!getResultsList()
+        .equals(other.getResultsList())) return false;
     if (!unknownFields.equals(other.unknownFields)) return false;
     return true;
   }
@@ -169,9 +180,9 @@ private static final long serialVersionUID = 0L;
     }
     int hash = 41;
     hash = (19 * hash) + getDescriptor().hashCode();
-    if (hasResults()) {
+    if (getResultsCount() > 0) {
       hash = (37 * hash) + RESULTS_FIELD_NUMBER;
-      hash = (53 * hash) + getResults().hashCode();
+      hash = (53 * hash) + getResultsList().hashCode();
     }
     hash = (29 * hash) + unknownFields.hashCode();
     memoizedHashCode = hash;
@@ -301,16 +312,17 @@ private static final long serialVersionUID = 0L;
     private void maybeForceBuilderInitialization() {
       if (com.google.protobuf.GeneratedMessageV3
               .alwaysUseFieldBuilders) {
+        getResultsFieldBuilder();
       }
     }
     @java.lang.Override
     public Builder clear() {
       super.clear();
       if (resultsBuilder_ == null) {
-        results_ = null;
+        results_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
       } else {
-        results_ = null;
-        resultsBuilder_ = null;
+        resultsBuilder_.clear();
       }
       return this;
     }
@@ -338,7 +350,12 @@ private static final long serialVersionUID = 0L;
     @java.lang.Override
     public com.levi.yoon.proto.SearchResponse buildPartial() {
       com.levi.yoon.proto.SearchResponse result = new com.levi.yoon.proto.SearchResponse(this);
+      int from_bitField0_ = bitField0_;
       if (resultsBuilder_ == null) {
+        if (((bitField0_ & 0x00000001) != 0)) {
+          results_ = java.util.Collections.unmodifiableList(results_);
+          bitField0_ = (bitField0_ & ~0x00000001);
+        }
         result.results_ = results_;
       } else {
         result.results_ = resultsBuilder_.build();
@@ -391,8 +408,31 @@ private static final long serialVersionUID = 0L;
 
     public Builder mergeFrom(com.levi.yoon.proto.SearchResponse other) {
       if (other == com.levi.yoon.proto.SearchResponse.getDefaultInstance()) return this;
-      if (other.hasResults()) {
-        mergeResults(other.getResults());
+      if (resultsBuilder_ == null) {
+        if (!other.results_.isEmpty()) {
+          if (results_.isEmpty()) {
+            results_ = other.results_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+          } else {
+            ensureResultsIsMutable();
+            results_.addAll(other.results_);
+          }
+          onChanged();
+        }
+      } else {
+        if (!other.results_.isEmpty()) {
+          if (resultsBuilder_.isEmpty()) {
+            resultsBuilder_.dispose();
+            resultsBuilder_ = null;
+            results_ = other.results_;
+            bitField0_ = (bitField0_ & ~0x00000001);
+            resultsBuilder_ = 
+              com.google.protobuf.GeneratedMessageV3.alwaysUseFieldBuilders ?
+                 getResultsFieldBuilder() : null;
+          } else {
+            resultsBuilder_.addAllMessages(other.results_);
+          }
+        }
       }
       this.mergeUnknownFields(other.unknownFields);
       onChanged();
@@ -422,117 +462,241 @@ private static final long serialVersionUID = 0L;
       }
       return this;
     }
+    private int bitField0_;
 
-    private com.levi.yoon.proto.SearchResult results_;
-    private com.google.protobuf.SingleFieldBuilderV3<
-        com.levi.yoon.proto.SearchResult, com.levi.yoon.proto.SearchResult.Builder, com.levi.yoon.proto.SearchResultOrBuilder> resultsBuilder_;
-    /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
-     */
-    public boolean hasResults() {
-      return resultsBuilder_ != null || results_ != null;
+    private java.util.List<com.levi.yoon.proto.SearchResult> results_ =
+      java.util.Collections.emptyList();
+    private void ensureResultsIsMutable() {
+      if (!((bitField0_ & 0x00000001) != 0)) {
+        results_ = new java.util.ArrayList<com.levi.yoon.proto.SearchResult>(results_);
+        bitField0_ |= 0x00000001;
+       }
     }
+
+    private com.google.protobuf.RepeatedFieldBuilderV3<
+        com.levi.yoon.proto.SearchResult, com.levi.yoon.proto.SearchResult.Builder, com.levi.yoon.proto.SearchResultOrBuilder> resultsBuilder_;
+
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    public com.levi.yoon.proto.SearchResult getResults() {
+    public java.util.List<com.levi.yoon.proto.SearchResult> getResultsList() {
       if (resultsBuilder_ == null) {
-        return results_ == null ? com.levi.yoon.proto.SearchResult.getDefaultInstance() : results_;
+        return java.util.Collections.unmodifiableList(results_);
       } else {
-        return resultsBuilder_.getMessage();
+        return resultsBuilder_.getMessageList();
       }
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    public Builder setResults(com.levi.yoon.proto.SearchResult value) {
+    public int getResultsCount() {
+      if (resultsBuilder_ == null) {
+        return results_.size();
+      } else {
+        return resultsBuilder_.getCount();
+      }
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public com.levi.yoon.proto.SearchResult getResults(int index) {
+      if (resultsBuilder_ == null) {
+        return results_.get(index);
+      } else {
+        return resultsBuilder_.getMessage(index);
+      }
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public Builder setResults(
+        int index, com.levi.yoon.proto.SearchResult value) {
       if (resultsBuilder_ == null) {
         if (value == null) {
           throw new NullPointerException();
         }
-        results_ = value;
+        ensureResultsIsMutable();
+        results_.set(index, value);
         onChanged();
       } else {
-        resultsBuilder_.setMessage(value);
+        resultsBuilder_.setMessage(index, value);
       }
-
       return this;
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
     public Builder setResults(
+        int index, com.levi.yoon.proto.SearchResult.Builder builderForValue) {
+      if (resultsBuilder_ == null) {
+        ensureResultsIsMutable();
+        results_.set(index, builderForValue.build());
+        onChanged();
+      } else {
+        resultsBuilder_.setMessage(index, builderForValue.build());
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public Builder addResults(com.levi.yoon.proto.SearchResult value) {
+      if (resultsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureResultsIsMutable();
+        results_.add(value);
+        onChanged();
+      } else {
+        resultsBuilder_.addMessage(value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public Builder addResults(
+        int index, com.levi.yoon.proto.SearchResult value) {
+      if (resultsBuilder_ == null) {
+        if (value == null) {
+          throw new NullPointerException();
+        }
+        ensureResultsIsMutable();
+        results_.add(index, value);
+        onChanged();
+      } else {
+        resultsBuilder_.addMessage(index, value);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public Builder addResults(
         com.levi.yoon.proto.SearchResult.Builder builderForValue) {
       if (resultsBuilder_ == null) {
-        results_ = builderForValue.build();
+        ensureResultsIsMutable();
+        results_.add(builderForValue.build());
         onChanged();
       } else {
-        resultsBuilder_.setMessage(builderForValue.build());
+        resultsBuilder_.addMessage(builderForValue.build());
       }
-
       return this;
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    public Builder mergeResults(com.levi.yoon.proto.SearchResult value) {
+    public Builder addResults(
+        int index, com.levi.yoon.proto.SearchResult.Builder builderForValue) {
       if (resultsBuilder_ == null) {
-        if (results_ != null) {
-          results_ =
-            com.levi.yoon.proto.SearchResult.newBuilder(results_).mergeFrom(value).buildPartial();
-        } else {
-          results_ = value;
-        }
+        ensureResultsIsMutable();
+        results_.add(index, builderForValue.build());
         onChanged();
       } else {
-        resultsBuilder_.mergeFrom(value);
+        resultsBuilder_.addMessage(index, builderForValue.build());
       }
-
       return this;
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public Builder addAllResults(
+        java.lang.Iterable<? extends com.levi.yoon.proto.SearchResult> values) {
+      if (resultsBuilder_ == null) {
+        ensureResultsIsMutable();
+        com.google.protobuf.AbstractMessageLite.Builder.addAll(
+            values, results_);
+        onChanged();
+      } else {
+        resultsBuilder_.addAllMessages(values);
+      }
+      return this;
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
     public Builder clearResults() {
       if (resultsBuilder_ == null) {
-        results_ = null;
+        results_ = java.util.Collections.emptyList();
+        bitField0_ = (bitField0_ & ~0x00000001);
         onChanged();
       } else {
-        results_ = null;
-        resultsBuilder_ = null;
+        resultsBuilder_.clear();
       }
-
       return this;
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    public com.levi.yoon.proto.SearchResult.Builder getResultsBuilder() {
-      
-      onChanged();
-      return getResultsFieldBuilder().getBuilder();
+    public Builder removeResults(int index) {
+      if (resultsBuilder_ == null) {
+        ensureResultsIsMutable();
+        results_.remove(index);
+        onChanged();
+      } else {
+        resultsBuilder_.remove(index);
+      }
+      return this;
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    public com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder() {
-      if (resultsBuilder_ != null) {
-        return resultsBuilder_.getMessageOrBuilder();
-      } else {
-        return results_ == null ?
-            com.levi.yoon.proto.SearchResult.getDefaultInstance() : results_;
+    public com.levi.yoon.proto.SearchResult.Builder getResultsBuilder(
+        int index) {
+      return getResultsFieldBuilder().getBuilder(index);
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder(
+        int index) {
+      if (resultsBuilder_ == null) {
+        return results_.get(index);  } else {
+        return resultsBuilder_.getMessageOrBuilder(index);
       }
     }
     /**
-     * <code>.grpc.sample.SearchResult results = 1;</code>
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
      */
-    private com.google.protobuf.SingleFieldBuilderV3<
+    public java.util.List<? extends com.levi.yoon.proto.SearchResultOrBuilder> 
+         getResultsOrBuilderList() {
+      if (resultsBuilder_ != null) {
+        return resultsBuilder_.getMessageOrBuilderList();
+      } else {
+        return java.util.Collections.unmodifiableList(results_);
+      }
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public com.levi.yoon.proto.SearchResult.Builder addResultsBuilder() {
+      return getResultsFieldBuilder().addBuilder(
+          com.levi.yoon.proto.SearchResult.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public com.levi.yoon.proto.SearchResult.Builder addResultsBuilder(
+        int index) {
+      return getResultsFieldBuilder().addBuilder(
+          index, com.levi.yoon.proto.SearchResult.getDefaultInstance());
+    }
+    /**
+     * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+     */
+    public java.util.List<com.levi.yoon.proto.SearchResult.Builder> 
+         getResultsBuilderList() {
+      return getResultsFieldBuilder().getBuilderList();
+    }
+    private com.google.protobuf.RepeatedFieldBuilderV3<
         com.levi.yoon.proto.SearchResult, com.levi.yoon.proto.SearchResult.Builder, com.levi.yoon.proto.SearchResultOrBuilder> 
         getResultsFieldBuilder() {
       if (resultsBuilder_ == null) {
-        resultsBuilder_ = new com.google.protobuf.SingleFieldBuilderV3<
+        resultsBuilder_ = new com.google.protobuf.RepeatedFieldBuilderV3<
             com.levi.yoon.proto.SearchResult, com.levi.yoon.proto.SearchResult.Builder, com.levi.yoon.proto.SearchResultOrBuilder>(
-                getResults(),
+                results_,
+                ((bitField0_ & 0x00000001) != 0),
                 getParentForChildren(),
                 isClean());
         results_ = null;

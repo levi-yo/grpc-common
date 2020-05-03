@@ -8,15 +8,26 @@ public interface SearchResponseOrBuilder extends
     com.google.protobuf.MessageOrBuilder {
 
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  boolean hasResults();
+  java.util.List<com.levi.yoon.proto.SearchResult> 
+      getResultsList();
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  com.levi.yoon.proto.SearchResult getResults();
+  com.levi.yoon.proto.SearchResult getResults(int index);
   /**
-   * <code>.grpc.sample.SearchResult results = 1;</code>
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
    */
-  com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder();
+  int getResultsCount();
+  /**
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+   */
+  java.util.List<? extends com.levi.yoon.proto.SearchResultOrBuilder> 
+      getResultsOrBuilderList();
+  /**
+   * <code>repeated .grpc.sample.SearchResult results = 1;</code>
+   */
+  com.levi.yoon.proto.SearchResultOrBuilder getResultsOrBuilder(
+      int index);
 }

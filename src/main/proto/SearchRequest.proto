@@ -28,5 +28,5 @@ enum Corpus {
 }
 
 message SearchResponse {
-  SearchResult results = 1;
+  repeated SearchResult results = 1;
 }

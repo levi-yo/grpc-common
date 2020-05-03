@@ -38,7 +38,7 @@ public final class SearchProto {
       "\030\001 \001(\t\022\023\n\013page_number\030\002 \001(\005\022\027\n\017result_pe" +
       "r_page\030\003 \001(\005\022#\n\006corpus\030\004 \001(\0162\023.grpc.samp" +
       "le.Corpus\"<\n\016SearchResponse\022*\n\007results\030\001" +
-      " \001(\0132\031.grpc.sample.SearchResult*Z\n\006Corpu" +
+      " \003(\0132\031.grpc.sample.SearchResult*Z\n\006Corpu" +
       "s\022\r\n\tUNIVERSAL\020\000\022\007\n\003WEB\020\001\022\n\n\006IMAGES\020\002\022\t\n" +
       "\005LOCAL\020\003\022\010\n\004NEWS\020\004\022\014\n\010PRODUCTS\020\005\022\t\n\005VIDE" +
       "O\020\006B$\n\023com.levi.yoon.protoB\013SearchProtoP" +
