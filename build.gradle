@@ -49,3 +49,7 @@ protobuf {
         }
     }
 }
+
+task generateGrpcAndProto(type: Exec) {
+    commandLine 'sh', 'generate_grpc_protobuf.sh'
+}
