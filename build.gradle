@@ -15,6 +15,7 @@ apply plugin: 'com.google.protobuf'
 
 group 'org.example'
 version '1.0-SNAPSHOT'
+sourceCompatibility = '14'
 
 repositories {
     mavenCentral()
